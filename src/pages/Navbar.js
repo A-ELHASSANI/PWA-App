@@ -11,7 +11,7 @@ class Navbar extends React.Component {
       };
     }
    //  componentDidMount() {
-      
+      //test
    //   }
 
       getUser = () =>{
