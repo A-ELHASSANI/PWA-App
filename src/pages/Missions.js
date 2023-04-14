@@ -48,23 +48,23 @@ class Missions extends Component {
 
                                         </span>
                                           
-                                          </li>
-                                                <li className=" text-xl p-2 flex justify-between"> 
-                                         <span className=" font-bold mr-10"> 
-                                         Avenant	N° de contrat
-                                         </span>
-                                        <span>
-                                            {c.periode_mois}
-
-                                        </span>
-                                          
-                                          </li>
+                                      </li>
                                     <li className=" text-xl p-2 flex justify-between" >
                                     <span className=" font-bold mr-10"> 
-                                    Avenant	N° de contrat
+                                    Avenant	
                                     </span>
                                     <span>
-                                         {c.sum_j}
+                                         {c.avenant}
+
+                                    </span>
+                                      </li>
+                              
+                                <li className=" text-xl p-2 flex justify-between" >
+                                    <span className=" font-bold mr-10"> 
+                                    N° de contrat
+                                    </span>
+                                    <span>
+                                         {c.num_contrat}
 
                                     </span>
                                       </li>
@@ -75,7 +75,7 @@ class Missions extends Component {
                                     Qualification	
                                     </span>
                                     <span>
-                                         {c.sum_net}
+                                         {c.nom_poste}
 
                                     </span>
                                 </li>
@@ -85,19 +85,33 @@ class Missions extends Component {
                                     Date de début de mission	
                                                                         </span>
                                     <span>
-                                         {c.sum_soumis}
+                                         {c.datedebut}
 
                                     </span>
                                 </li>
+                                
                                  <li className=" text-xl p-2 flex justify-between" >
                                     <span className=" font-bold mr-10"> 
                                     Date de fin réelle de mission	
                                                                         </span>
                                     <span>
-                                         {c.sum_sbg}
+                                         {c.date_fin}
 
                                     </span>
                                 </li>
+
+                               
+                                <li className=" text-xl p-2 flex justify-between"> 
+                                         <span className=" font-bold mr-10"> 
+                                         En mission chez
+                                         </span>
+                                        <span>
+                                            {c.raison_sociale}
+
+                                        </span>
+                                          
+                                 </li>
+
                           </ul>
                        
                     </div>

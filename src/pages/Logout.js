@@ -10,8 +10,9 @@ const Logout = () => {
 
   console.log( localStorage.getItem('token'));
   localStorage.removeItem('token');
-   navigate('/');
 
+   navigate('/');
+window.location.reload();
 });
 
 };

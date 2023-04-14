@@ -15,6 +15,7 @@ const Login = () => {
 
   if(localStorage.getItem('token')){
     console.log("test login login.js")
+    
     navigate('/Dashboard');
   }
  })
@@ -30,8 +31,8 @@ const handleSubmit = async (event) => {
     if( response.data.jwt){
       localStorage.setItem('token', response.data.jwt);
       console.log(" token : "+ response.data.jwt)
-
-      navigate('/Dashboard');
+      navigate(0);
+     // navigate('/Dashboard');
     }else{
      // console.log(response.data)
       setError(response.data.message);
