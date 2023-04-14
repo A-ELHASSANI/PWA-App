@@ -1,29 +1,30 @@
-import React, { useEffect   } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Navbar from './Navbar';
+import React, { Component ,  useEffect , useState } from 'react'
+import axios from 'axios';
+import { _URL_ , _TestLogin_ } from '..';
+import { Navigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+//import Navbar from './Navbar';
 import Home from './Home';
-import Footer from './Footer';
-import {  _TestLogin_ } from '..';
 
-  const Dashboard = () => {
-  const navigate = useNavigate();
+export default class Dashboard extends Component {
 
-  useEffect(() => {
-  if(_TestLogin_ == null){
-    navigate('/');
-  }
- })
+
+
+  render() {
+
+
+    console.log("render dashbord")
+    console.log(localStorage.getItem('token'))
 
     return (
       <>
-      <div className=''>
-        <Navbar/>
-        <Home/>
-        <Footer/>
-      </div>
-      </>
+        { ! localStorage.getItem('token') && <Navigate to="/"  />} 
+      <Home user={this.props.user}/> 
+    </>
     )
-  
+  }
 }
-export default Dashboard
+
+
+
 

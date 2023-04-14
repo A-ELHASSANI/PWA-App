@@ -1,4 +1,4 @@
-import React, { useEffect , useState  } from 'react';
+import React, { useEffect , useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { _URL_ , _TestLogin_ } from '..';
@@ -11,13 +11,12 @@ const Login = () => {
   const [error, setError] = useState('');
  const navigate = useNavigate();
 
- useEffect(() => {
-
-  if(localStorage.getItem('token')){
-    console.log("test login login.js")
-    navigate('/Dashboard');
-  }
- })
+//  useEffect(() => {
+//   if(_TestLogin_){
+//     console.log("test login login.js")
+//     navigate('/Dashboard');
+//   }
+//  })
 
 
 const handleSubmit = async (event) => {
@@ -29,8 +28,6 @@ const handleSubmit = async (event) => {
   ).then((response) => {
     if( response.data.jwt){
       localStorage.setItem('token', response.data.jwt);
-      console.log(" token : "+ response.data.jwt)
-
       navigate('/Dashboard');
     }else{
      // console.log(response.data)
@@ -51,30 +48,29 @@ const handleSubmit = async (event) => {
          <div className="max-w-md mx-auto">
            <div className="flex items-center space-x-5">
             
-             <div className="text-gray-700 text-center">
+             <div className="text-gray-700">
                <h1 className="text-2xl font-medium">Connexion</h1>
-               <p>Connectez-vous à votre compte </p>
+               <p>Connectez-vous à votre compte pour accéder à votre tableau de bord.</p>
              </div>
            </div>
     <form onSubmit={handleSubmit}>
-      <div className="mt-5">
-        <label htmlFor="email" className="absolute p-2  text-gray-500 text-xs peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-3.5 peer-focus:text-indigo-500 transition-all"  >Email</label>
+      <div>
+        <label htmlFor="email" className="absolute  text-gray-500 text-xs peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-3.5 peer-focus:text-indigo-500 transition-all"  >Email</label>
         <input
           type="email"
           id="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="peer  mb-5  h-10 w-full border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-indigo-500"
-           
+          className="peer h-10 w-full border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-indigo-500"
+
         />
       </div>
       <div>
-        <label htmlFor="password" className="absolute  p-2 text-gray-500 text-xs peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-3.5 peer-focus:text-indigo-500 transition-all" >Password</label>
+        <label htmlFor="password" className="absolute  text-gray-500 text-xs peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-3.5 peer-focus:text-indigo-500 transition-all" >Password</label>
         <input
           type="password"
           id="password"
           value={password}
-          autoComplete="on"
           onChange={(e) => setPassword(e.target.value)}
           className="peer h-10 w-full border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-indigo-500"
 

@@ -1,21 +1,25 @@
 import React, { useEffect , useState } from 'react';
 
 import axios from 'axios';
-import { Component } from 'react';
 import { _URL_  } from '..';
 import { Link } from 'react-router-dom';
 import Logout from './Logout';
-class Navbar extends Component {
+class Navbar extends React.Component {
+   constructor(props) {
+      super(props);
+      console.log(props)
+    }
+    
+
+   
 
    render() {
-      console.log("render navbar")
-    
-      const profil = this.props.user ;
-    
+
+
     return (
       <>
         
- <nav className="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+<nav className="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
   <div className="px-3 py-3 lg:px-5 lg:pl-3">
     <div className="flex items-center justify-between">
       <div className="flex items-center justify-start">
@@ -25,10 +29,10 @@ class Navbar extends Component {
                <path clipRule="evenodd" fillRule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
             </svg>
          </button>
-         <Link to="/Dashboard" className="flex ml-2 md:mr-24">
+        <a href="https://flowbite.com" className="flex ml-2 md:mr-24">
           {/* <img src="https://flowbite.com/docs/images/logo.svg" className="h-8 mr-3" alt="FlowBite Logo" /> */}
           <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Artus</span>
-        </Link>
+        </a>
       </div>
       <div className="flex items-center">
           <div className="flex items-center ml-3">
@@ -42,10 +46,10 @@ class Navbar extends Component {
             <div className="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600" id="dropdown-user">
               <div className="px-4 py-3" role="none">
                 <p className="text-sm text-gray-900 dark:text-white" role="none">
-                 {profil.nom} {profil.prenom}
+                 {this.state.user.nom} {this.state.user.prenom}
                 </p>
                 <p className="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
-                {profil.email}
+                {this.state.user.email}
                 </p>
               </div>
               <ul className="py-1" role="none">
@@ -67,9 +71,9 @@ class Navbar extends Component {
         </div>
     </div>
   </div>
- </nav>
- 
- <aside id="logo-sidebar" className="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700" aria-label="Sidebar">
+</nav>
+
+<aside id="logo-sidebar" className="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700" aria-label="Sidebar">
    <div className="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
       <ul className="space-y-2 font-medium">
         <li>
@@ -80,7 +84,7 @@ class Navbar extends Component {
             <Link to="/Dashboard" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700" >
             <svg aria-hidden="true" className="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path><path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path></svg>
             <span className="ml-3">  Dashboard </span> </Link>
-            <Link to="/Profil" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700" >État civil</Link>
+            <Link to="/Profile" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700" >État civil</Link>
             <Link to="/Salaires" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700" >Salaires</Link>
             <Link to="/Cnss" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700" >CNSS</Link>
             <Link to="/Missions" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700" >Missions</Link>
@@ -130,13 +134,62 @@ class Navbar extends Component {
          </li> */}
       </ul>
    </div>
- </aside>
- 
- 
+</aside>
+
+<div className="p-4 sm:ml-64">
+   <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
+      <div className="grid grid-cols-3 gap-4 mb-4">
+         <div className="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800">
+            <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
+         </div>
+         <div className="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800">
+            <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
+         </div>
+         <div className="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800">
+            <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
+         </div>
+      </div>
+      <div className="flex items-center justify-center h-48 mb-4 rounded bg-gray-50 dark:bg-gray-800">
+         <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
+      </div>
+      <div className="grid grid-cols-2 gap-4 mb-4">
+         <div className="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
+            <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
+         </div>
+         <div className="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
+            <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
+         </div>
+         <div className="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
+            <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
+         </div>
+         <div className="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
+            <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
+         </div>
+      </div>
+      <div className="flex items-center justify-center h-48 mb-4 rounded bg-gray-50 dark:bg-gray-800">
+         <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
+      </div>
+      <div className="grid grid-cols-2 gap-4">
+         <div className="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
+            <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
+         </div>
+         <div className="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
+            <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
+         </div>
+         <div className="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
+            <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
+         </div>
+         <div className="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
+            <p className="text-2xl text-gray-400 dark:text-gray-500">+</p>
+         </div>
+      </div>
+   </div>
+</div>
+
       </>
     )
   
- }
- }
+}
+}
 export default Navbar
 
