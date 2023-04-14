@@ -8,11 +8,11 @@ import {  _TestLogin_ } from '..';
   const Dashboard = () => {
   const navigate = useNavigate();
 
-  useEffect(() => {
-  if(_TestLogin_ == null){
-    navigate('/');
-  }
- })
+//   useEffect(() => {
+//   if(_TestLogin_ == null){
+//     navigate('/');
+//   }
+//  })
 
     return (
       <>
