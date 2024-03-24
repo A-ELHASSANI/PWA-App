@@ -9,7 +9,6 @@ import 'flowbite';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
  const _URL_ ="https://www.dbs-crm.com/artus-site/apiLoginCollab/";
-//const _URL_ ="http://localhost/api/";
  let _TestLogin_ = localStorage.getItem('token');
 root.render(
   <React.StrictMode>
